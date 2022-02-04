@@ -45,7 +45,7 @@ class App extends React.Component {
 
   handleAddExp = () => {
     this.setState({
-      expenses: [...this.state.expenses, {id: 2, name: this.state.inputTitle, amount: this.state.inputAmount }],
+      expenses: [...this.state.expenses, { id: this.state.expenses.length + 1, name: this.state.inputTitle, amount: this.state.inputAmount }],
     })
   }
 
