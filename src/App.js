@@ -57,21 +57,21 @@ class App extends React.Component {
     });
   }
 
+  takeSumPln = () => {
+    let sum = 0;
+    this.state.expenses.forEach(item => {
+      sum += Number(item.amount);
+    })
+    return Math.round(sum*100)/100;
+  }
+
+  takeSumEur = () => {
+    let sum = Math.round(this.takeSumPln() / this.state.euroRate * 100) / 100;
+    return sum;
+  }
+
   render() {
 
-    let takeSumPln = () => {
-      let sum = 0;
-      this.state.expenses.forEach(item => {
-        sum += Number(item.amount);
-      })
-      return Math.round(sum*100)/100;
-    }
-
-    let takeSumEur = () => {
-      let sum = Math.round(takeSumPln() / this.state.euroRate * 100) / 100;
-      return sum;
-    }
-    // console.log(takeSumPln())
     return (
       <div className="App">
         <div className="titleDiv">
@@ -124,7 +124,7 @@ class App extends React.Component {
           </Table>
         </TableContainer>
         <div className="divSum">
-          Sum: {takeSumPln()} PLN ({takeSumEur()} EUR)
+          Sum: {this.takeSumPln()} PLN ({this.takeSumEur()} EUR)
         </div>
       </div>
     );
