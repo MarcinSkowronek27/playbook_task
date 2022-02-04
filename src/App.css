@@ -1,0 +1,52 @@
+.App {
+  text-align: center;
+  border: solid 1px;
+  max-width: 650px;
+}
+
+button {
+  border: none;
+}
+
+.titleDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  margin: 0 20px;
+}
+
+.inputBoxTitle, .inputBoxAmount {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0 20px;
+}
+.inputBoxAmount button {
+  margin: auto 0;
+  margin-left: 60px;
+  width: 100px;
+  height: 30px;
+  border: solid 1px;
+  border-radius: 10px;
+}
+.inputBoxTitle input, .inputBoxAmount input {
+  margin: auto 40px;
+  /* margin-left: 40px; */
+}
+.inputBoxAmount input {
+  margin-left: 55px;
+}
+.titleDiv p {
+  margin: auto 0;
+}
+
+.tableHead {
+  background-color: grey;
+  border: solid 1px;
+  font-weight: 800;
+}
+
+.tableContent {
+  border: solid 1px;
+}
