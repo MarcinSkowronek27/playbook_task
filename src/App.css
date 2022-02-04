@@ -30,6 +30,7 @@ button {
   height: 30px;
   border: solid 1px;
   border-radius: 10px;
+  background: rgb(212, 212, 212);
 }
 .inputBoxTitle input, .inputBoxAmount input {
   margin: auto 40px;
@@ -50,4 +51,9 @@ button {
 
 .tableContent {
   border: solid 1px;
+}
+
+.divSum {
+  text-align: left;
+  margin: 30px 0 30px 30px;
 }

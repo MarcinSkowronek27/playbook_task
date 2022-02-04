@@ -31,6 +31,7 @@ class App extends React.Component {
       euroRate: 4.382,
       inputTitle: '',
       inputAmount: '',
+      sum: 150,
     };
   }
 
@@ -49,12 +50,28 @@ class App extends React.Component {
     })
   }
 
-  deleteCell = () => {
-    console.log('działa');
+  deleteCell = (id) => {
+    let filteredExpenses = this.state.expenses.filter(item => item.id !== id);
+    this.setState({
+      expenses: filteredExpenses,
+    });
   }
 
   render() {
-    console.log(this.state);
+
+    let takeSumPln = () => {
+      let sum = 0;
+      this.state.expenses.forEach(item => {
+        sum += Number(item.amount);
+      })
+      return Math.round(sum*100)/100;
+    }
+
+    let takeSumEur = () => {
+      let sum = Math.round(takeSumPln() / this.state.euroRate * 100) / 100;
+      return sum;
+    }
+    // console.log(takeSumPln())
     return (
       <div className="App">
         <div className="titleDiv">
@@ -100,12 +117,15 @@ class App extends React.Component {
                   </TableCell>
                   <TableCell align="center">{expense.amount}</TableCell>
                   <TableCell align="center">{Math.round(expense.amount / this.state.euroRate * 100) / 100}</TableCell>
-                  <TableCell align="center"><button onClick={this.deleteCell}>Delete</button></TableCell>
+                  <TableCell align="center"><button onClick={e => this.deleteCell(expense.id)}>Delete</button></TableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
+        <div className="divSum">
+          Sum: {takeSumPln()} PLN ({takeSumEur()} EUR)
+        </div>
       </div>
     );
   }
