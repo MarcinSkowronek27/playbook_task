@@ -45,9 +45,21 @@ class App extends React.Component {
   }
 
   handleAddExp = () => {
-    this.setState({
-      expenses: [...this.state.expenses, { id: this.state.expenses.length + 1, name: this.state.inputTitle, amount: this.state.inputAmount }],
-    })
+    let inputTitle = this.state.inputTitle;
+    let inputAmount = this.state.inputAmount;
+    let pattern = "^[1-9][1-9]*[.]?[1-9]{0,2}$";
+    if (inputTitle.length < 5) {
+      alert('Title should have at least 5 characters');
+    } else if (inputAmount.search(",") !== -1) {
+      alert('Amount should have only decimal point, not comma');
+    } else if (inputAmount.match(pattern) === null) {
+      alert('Amount should have only digits and 2 digits after decimal point');
+    }
+    else {
+      this.setState({
+        expenses: [...this.state.expenses, { id: this.state.expenses.length + 1, name: this.state.inputTitle, amount: this.state.inputAmount }],
+      })
+    }
   }
 
   deleteCell = (id) => {
@@ -62,7 +74,7 @@ class App extends React.Component {
     this.state.expenses.forEach(item => {
       sum += Number(item.amount);
     })
-    return Math.round(sum*100)/100;
+    return Math.round(sum * 100) / 100;
   }
 
   takeSumEur = () => {
@@ -71,7 +83,7 @@ class App extends React.Component {
   }
 
   render() {
-
+    console.log(this.state);
     return (
       <div className="App">
         <div className="titleDiv">
@@ -81,6 +93,8 @@ class App extends React.Component {
         <div className="inputBoxTitle">
           <h4>Title of transaction</h4>
           <input
+            type="text"
+            name="name"
             autoComplete="off"
             minLength="5"
             onChange={(e) => this.handleChangeTitle(e)}
@@ -90,7 +104,8 @@ class App extends React.Component {
           <h4>Amount (in PLN)</h4>
           <input
             autoComplete="off"
-            minLength="5"
+            type="text"
+            name="amount"
             onChange={(e) => this.handleChangeAmount(e)}
           ></input>
           <button onClick={this.handleAddExp}>Add</button>
