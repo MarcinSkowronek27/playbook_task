@@ -35,6 +35,11 @@ class App extends React.Component {
     };
   }
 
+  handleChangeRate = (e) => {
+    e.preventDefault();
+    this.setState({ euroRate: e.target.value });
+  }
+
   handleChangeTitle = (e) => {
     e.preventDefault();
     this.setState({ inputTitle: e.target.value });
@@ -47,7 +52,7 @@ class App extends React.Component {
   handleAddExp = () => {
     let inputTitle = this.state.inputTitle;
     let inputAmount = this.state.inputAmount;
-    let pattern = "^[1-9][1-9]*[.]?[1-9]{0,2}$";
+    let pattern = "^[1-9][1-9][1-9]*[.]?[1-9]{0,2}$";
     if (inputTitle.length < 5) {
       alert('Title should have at least 5 characters');
     } else if (inputAmount.search(",") !== -1) {
@@ -88,7 +93,7 @@ class App extends React.Component {
       <div className="App">
         <div className="titleDiv">
           <h1>List of expenses</h1>
-          <p>1 EUR = {this.state.euroRate} PLN</p>
+          <p>1 EUR = <input value={this.state.euroRate} onChange={e => this.handleChangeRate(e)} ></input>PLN</p>
         </div>
         <div className="inputBoxTitle">
           <h4>Title of transaction</h4>
